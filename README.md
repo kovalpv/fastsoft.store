@@ -1,0 +1,2 @@
+# fastsoft.store
+Пример
