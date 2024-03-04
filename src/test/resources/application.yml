@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: app
+        dialect: org.hibernate.dialect.PostgresPlusDialect
+        format_sql: true
+  flyway:
+    dataSource:
+    locations: classpath:db/migration
+    enabled: true
+    clean-disabled: false
+    schemas:
+      - app
+
+logging:
+  level:
+    org.springframework.orm.jpa.JpaTransactionManager: DEBUG
+    org:
+      hibernate:
+        orm.jdbc.bind: TRACE
+        type:
+          descriptor:
+            sql: trace
