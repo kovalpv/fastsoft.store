@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class FindAllGoodsQuery {
 
-  private final static Sort DEFAULT_SORT = Sort.by(Order.asc("code"));
+  private static final Sort DEFAULT_SORT = Sort.by(Order.asc("code"));
   private final GoodRepository goodRepository;
 
   @Transactional

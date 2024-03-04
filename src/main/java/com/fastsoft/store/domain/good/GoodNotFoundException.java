@@ -7,7 +7,7 @@ import com.fastsoft.store.domain.error.NotFoundException;
  */
 public class GoodNotFoundException extends NotFoundException {
 
-  private final static String MESSAGE = "Товар %s не найден.";
+  private static final String MESSAGE = "Товар %s не найден.";
 
   public GoodNotFoundException(String code) {
     super(String.format(MESSAGE, code));

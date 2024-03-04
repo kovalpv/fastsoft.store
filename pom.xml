@@ -17,6 +17,7 @@
 		<java.version>21</java.version>
 		<jackson.version>2.16.1</jackson.version>
 		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+		<checkstyle-maven-plugin.version>3.3.0</checkstyle-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -172,7 +173,55 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle-maven-plugin.version}</version>
+				<configuration>
+					<configLocation>src/main/resources/checkstyle/google_checks.xml</configLocation>
+					<suppressionsLocation>src/main/resources/checkstyle/suppressions.xml</suppressionsLocation>
+					<violationSeverity>info</violationSeverity>
+					<failsOnError>true</failsOnError>
+					<consoleOutput>true</consoleOutput>
+					<sourceDirectories>${basedir}/src</sourceDirectories>
+					<failOnViolation>false</failOnViolation>
+					<excludes>**/test/**/*</excludes>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>10.9.1</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle-maven-plugin.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>

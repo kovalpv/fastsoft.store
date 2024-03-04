@@ -59,7 +59,9 @@ public class OrderItem {
   private Double vat;
 
   /**
-   * @return Общая стоимость записи заказа.
+   * Общая стоимость записи заказа.
+   *
+   * @return Возвращает Цена товара x Количество товаров в заказе.
    */
   @Transient
   public Double getAmount() {

@@ -36,7 +36,7 @@ public class Order {
   private OrderCode code;
 
   /**
-   * Номер документв
+   * Номер документа.
    */
   @Column(name = "number")
   private Integer number;
@@ -84,16 +84,6 @@ public class Order {
     this.modifiedAt = modifiedAt;
   }
 
-  private void addItem(OrderItem orderItem) {
-    this.items.add(orderItem);
-    this.updateTotalValue();
-  }
-
-  private void updateTotalValue() {
-    amount = items.stream().map(OrderItem::getAmount).mapToDouble(Double::doubleValue).sum();
-    vat = items.stream().map(OrderItem::getVat).mapToDouble(Double::doubleValue).sum();
-  }
-
   /**
    * Добавление товара в заказ.
    *
@@ -103,6 +93,16 @@ public class Order {
   public void addItem(Good good, Integer count) {
     String code = getCode().getCode() + "::" + good.getCode();
     addItem(new OrderItem(code, good, count));
+  }
+
+  private void addItem(OrderItem orderItem) {
+    this.items.add(orderItem);
+    this.updateTotalValue();
+  }
+
+  private void updateTotalValue() {
+    amount = items.stream().map(OrderItem::getAmount).mapToDouble(Double::doubleValue).sum();
+    vat = items.stream().map(OrderItem::getVat).mapToDouble(Double::doubleValue).sum();
   }
 
   /**

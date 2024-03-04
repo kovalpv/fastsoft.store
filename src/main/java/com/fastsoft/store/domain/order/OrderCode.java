@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderCode implements Serializable {
 
-  private final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-  private final static String CODE_TEMPLATE = "ORDER::%s::%06d";
+  private static final String CODE_TEMPLATE = "ORDER::%s::%06d";
+  private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
   private String code;
 
